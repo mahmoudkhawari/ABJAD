@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ابجد حروف</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazir&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Vazir', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column; /* چیدمان عمودی */
+            align-items: center; /* مرکز کردن افقی */
+            height: 100vh; /* ارتفاع کل صفحه */
+            overflow: hidden; /* جلوگیری از اسکرول */
+        }
+        h1 {
+            color: #4a90e2;
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+        }
+        p {
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-align: center;
+            width: 100%;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #4a90e2;
+            border-radius: 5px;
+            width: 300px;
+            max-width: 90%;
+            transition: border-color 0.3s;
+            margin-bottom: 20px;
+        }
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between; /* فاصله بین کادرها */
+            width: 100%;
+            max-width: 800px;
+            flex-grow: 1; /* اجازه می‌دهد که کادرها ارتفاع کامل را بگیرند */
+        }
+        .result {
+            font-size: 16px; /* اندازه نوشته کوچکتر */
+            color: #333;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            width: 300px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+            text-align: right; /* متن راست به چپ */
+            direction: rtl; /* جهت متن راست به چپ */
+            overflow-y: auto; /* اضافه کردن اسکرول در صورت نیاز */
+            max-height: 300px; /* حداکثر ارتفاع */
+            margin-right: 20px; /* فاصله بین کادر نتایج و کادر جمع */
+        }
+        .circular-sum {
+            font-size: 20px; /* اندازه ثابت برای کادر جمع */
+            color: #333;
+            background-color: #e7f3fe; /* رنگ کادر */
+            border: 1px solid #4a90e2;
+            border-radius: 50%; /* شکل دایره‌ای */
+            padding: 20px; /* فاصله داخلی */
+            width: 100px; /* عرض ثابت */
+            height: 100px; /* ارتفاع ثابت */
+            display: flex; /* برای مرکز کردن متن */
+            align-items: center; /* مرکز کردن عمودی */
+            justify-content: center; /* مرکز کردن افقی */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+            text-align: center; /* متن در مرکز */
+            direction: rtl; /* جهت متن راست به چپ */
+        }
+        .subtraction-result {
+            font-size: 16px;
+            color: #333;
+            background-color: #e7f3fe; /* رنگ کادر */
+            border: 1px solid #4a90e2;
+            border-radius: 5px;
+            padding: 15px;
+            width: 100px; /* عرض ثابت */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center; /* متن در مرکز */
+            margin: 10px; /* فاصله بین کادرها */
+        }
+        .result span {
+            display: inline; /* نمایش هر بخش در یک خط */
+            margin: 5px 0; /* فاصله بین خطوط */
+        }
+        .letter {
+            color: #4a90e2; /* رنگ حرف */
+            display: inline; /* نمایش حرف در یک خط */
+        }
+        .abjad {
+            color: #e67e22; /* رنگ معادل ابجد */
+            display: inline; /* نمایش معادل ابجد در یک خط */
+        }
+        .number {
+            color: #27ae60; /* رنگ عدد ابجد */
+            display: inline; /* نمایش عدد ابجد در یک خط */
+        }
+        .result:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+            p {
+                font-size: 16px;
+            }
+            .result, .circular-sum, .subtraction-result {
+                font-size: 18px;
+            }
+            .container {
+                flex-direction: column; /* چیدمان عمودی در صفحه‌های کوچک */
+                align-items: center; /* مرکز کردن کادرها */
+            }
+            .result {
+                margin-right: 0; /* حذف فاصله در حالت موبایل */
+                margin-bottom: 20px; /* فاصله بین کادرها */
+            }
+        }
+        /* استایل ولکام اسکرین */
+        .welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #2c3e50; /* رنگ پس‌زمینه ولکام اسکرین */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            color: #ecf0f1; /* رنگ متن ولکام اسکرین */
+        }
+        .welcome-screen h2 {
+            margin-bottom: 20px;
+        }
+        .welcome-screen p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .close-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #e67e22; /* رنگ دکمه */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .close-button:hover {
+            background-color: #d95f23; /* رنگ دکمه در حالت هاور */
+        }
+    </style>
+</head>
+<body>
+
+<div class="welcome-screen" id="welcomeScreen">
+    <h2>ناد علی کبیر</h2>
+    <p>بِسمِ اللهِ الرَّحمن الرَّحیم</p>
+    <p>نَادِ عَلِيّاً مُظْهِرُ الْعَجَائِبِ تَجِدْهُ عَوْناً لَكَ فِي النَّوَائِبِ</p>
+    <p>لِي إِلَى اللهِ حَاجَتِي وَ عَلَيْهِ مُعَوَّلِي كُلَّمَا رَمْيَتُهُ وَ رَمَيْتَ مُقْتَضَی كُلِّ هَمٍّ وَ غَمٍّ</p>
+    <p>سَيَنْجَلِي بِعَظَمَتِكَ يَا اللهُ وَ بِنُبُوَّتِكَ يَا مُحَمَّدُ</p>
+    <p>صَلَّى اللهُ عَلَيْهِ وَ آلِهِ وَ سَلَّمَ وَ بِوَلَايَتِكَ يَا عَلِيُّ يَا عَلِيُّ يَا عَلِيُّ</p>
+    <p>أَدْرِكْنِي بِحَقِّ لُطْفِكَ الْخَفِيِّ، اللهُ أَكْبَرُ اللهُ أَكْبَرُ اللهُ أَكْبَرُ أَنَا مِنْ شَرِّ أَعْدَائِكَ بَرِي‌ءٌ بَرِي‌ءٌ بَرِي‌ءٌ</p>
+    <p>اللهُ صَمَدِي بِحَقِّ إِيَّاكَ نَعْبُدُ وَ إِيَّاكَ نَسْتَعِينُ يَا أَبَا الْغَيْثِ أَغِثْنِي يَا عَلِيُّ أَدْرِكْنِي</p>
+    <p>يَا قَاهِرَ الْعَدُوِّ وَ يَا وَالِيَ الْوَلِيِّ يَا مُظْهِرُ الْعَجَائِبِ يَا مُرْتَضَى عَلِيُّ</p>
+    <p>يَا قَهَّارُ تَقَهَّرْتَ بِالْقَهْرِ وَ الْقَهْرُ فِي قَهْرِ قَهْرِكَ يَا قَهَّارُ يَا ذَا الْبَطْشِ الشَّدِيدِ</p>
+    <p>أَنْتَ الْقَاهِرُ الْجَبَّارُ الْمُهْلِكُ الْمُنْتَقِمُ الْقَوِيُّ وَ الَّذِي لَا يُطَاقُ انْتِقَامُهُ</p>
+    <p>وَ أُفَوِّضُ أَمْرِي إِلَى اللهِ إِنَّ اللهَ بَصِيرٌ بِالْعِبَادِ وَ إِلَهُكُمْ إِلَهٌ وَاحِدٌ لَا إِلَهَ إِلَّا هُوَ الرَّحْمَنُ الرَّحِيمُ</p>
+    <p>حَسْبِيَ اللهُ وَ نِعْمَ الْوَكِيلُ نِعْمَ الْمَوْلَى وَ نِعْمَ النَّصِيرُ يَا غِيَاثَ الْمُسْتَغِيثِينَ أَغِثْنِي يَا رَاحِمَ الْمَسَاكِينِ ارْحَمْنِي</p>
+    <p>أَدْرِكْنِي يَا عَلِيُّ وَ أَدْرِكْنِي يَا عَلِيُّ أَدْرِكْنِي يَا عَلِيُّ أَدْرِكْنِي بِرَحْمَتِكَ يَا أَرْحَمَ الرَّاحِمِينَ</p>
+    <button class="close-button" onclick="closeWelcome()">سه صلوات</button>
+</div>
+
+<h1>ابجد حروف</h1>
+<p>لطفاً یک کلمه وارد کنید:</p>
+<input type="text" id="wordInput" oninput="getAbjad()" placeholder="کلمه خود را وارد کنید...">
+
+<div class="container">
+    <div class="result" id="result">لطفاً یک کلمه وارد کنید.</div>
+    <div class="circular-sum" id="sum">حاصل جمع: <span class="number">0</span></div>
+</div>
+
+<div class="container">
+    <div class="subtraction-result" id="sub12">حاصل جمع - 12: <span class="number">0</span></div>
+    <div class="subtraction-result" id="sub7">حاصل جمع - 7: <span class="number">0</span></div>
+    <div class="subtraction-result" id="sub4">حاصل جمع - 4: <span class="number">0</span></div>
+    <div class="subtraction-result" id="sub3">حاصل جمع - 3: <span class="number">0</span></div>
+    <div class="subtraction-result" id="sub5">حاصل جمع - 5: <span class="number">0</span></div>
+</div>
+
+<script>
+    const abjadMap = {
+    'ا': 1, 'ب': 2, 'پ': 2, 'ت': 400, 'ث': 500,
+    'ج': 3, 'چ': 300, 'ح': 8, 'خ': 600, 'د': 4,
+    'ذ': 700, 'ر': 200, 'ز': 7, 'ژ': 3, 'س': 60,
+    'ش': 300, 'ص': 90, 'ض': 800, 'ط': 9, 'ظ': 900,
+    'ع': 70, 'غ': 1000, 'ف': 80, 'ق': 100, 'ک': 20,
+    'گ': 3, 'ل': 30, 'م': 40, 'ن': 50, 'و': 6,
+    'ه': 5, 'ی': 10, 'ء': 1  // اضافه کردن حرف ء
+};
+
+    function getAbjad() {
+        const word = document.getElementById('wordInput').value;
+        const resultDiv = document.getElementById('result');
+        const sumDiv = document.getElementById('sum');
+        const sub12 = document.getElementById('sub12');
+        const sub7 = document.getElementById('sub7');
+        const sub4 = document.getElementById('sub4');
+        const sub3 = document.getElementById('sub3');
+        const sub5 = document.getElementById('sub5');
+        
+        let result = '';
+        let total = 0;
+
+        for (let letter of word) {
+            if (abjadMap[letter]) {
+                result += `<span class="letter">${letter}</span> : <span class="abjad">معادل ابجد</span> <span class="number">${abjadMap[letter]}</span><br>`; // هر حرف در یک خط
+                total += abjadMap[letter]; // جمع کردن اعداد ابجد
+            } else {
+                result += `<span>حرف '${letter}' معتبر نیست.</span><br>`;
+            }
+        }
+
+        resultDiv.innerHTML = result || 'لطفاً یک کلمه وارد کنید.';
+        sumDiv.innerHTML = `حاصل جمع: <span class="number">${total}</span>`;
+
+        // محاسبه تفریق به صورت تکراری
+        let remaining12 = total;
+        let remaining7 = total;
+        let remaining4 = total;
+        let remaining3 = total;
+        let remaining5 = total;
+
+        // کم کردن 12 تا 12
+        while (remaining12 >= 12) {
+            remaining12 -= 12;
+        }
+        sub12.innerHTML = `برج طالع : <span class="number">${remaining12}</span>`;
+
+        // کم کردن 7 تا 7
+        while (remaining7 >= 7) {
+            remaining7 -= 7;
+        }
+        sub7.innerHTML = `علت بیماری: <span class="number">${remaining7}</span>`;
+
+        // کم کردن 4 تا 4
+        while (remaining4 >= 4) {
+            remaining4 -= 4;
+        }
+        sub4.innerHTML = `جهت گمشده: <span class="number">${remaining4}</span>`;
+
+        // کم کردن 3 تا 3
+        while (remaining3 >= 3) {
+            remaining3 -= 3;
+        }
+        sub3.innerHTML = `دوستی: <span class="number">${remaining3}</span>`;
+
+        // کم کردن 5 تا 5
+        while (remaining5 >= 5) {
+            remaining5 -= 5;
+        }
+        sub5.innerHTML = `حاصل جمع - 5: <span class="number">${remaining5}</span>`;
+    }
+
+    function closeWelcome() {
+        document.getElementById('welcomeScreen').style.display = 'none';
+        document.body.style.overflow = 'auto'; // فعال کردن اسکرول
+    }
+</script>
+
+</body>
+</html>
