@@ -100,6 +100,27 @@
                 font-size: 14px; /* اندازه کوچک‌تر برای متن‌ها */
             }
         }
+
+        .date {
+            font-size: 20px; /* اندازه کوچک‌تر برای متن تاریخ‌ها */
+            margin: 15px 0; /* فاصله کمتر بین کادرها */
+            padding: 10px; /* فاصله داخلی کادر */
+            border-radius: 10px; /* گوشه‌های گرد کادر */
+            width: 300px; /* عرض کادر */
+            text-align: center; /* مرکز کردن متن */
+        }
+        
+        .solar-date {
+            color: #e74c3c; /* رنگ متن تاریخ شمسی (فارسی) */
+            background-color: #ffeaf0; /* رنگ پس‌زمینه کادر تاریخ شمسی */
+            border: 2px solid #e74c3c; /* رنگ کادر تاریخ شمسی */
+        }
+
+        .lunar-date {
+            color: #3498db; /* رنگ متن تاریخ قمری (عربی) */
+            background-color: #eaf8ff; /* رنگ پس‌زمینه کادر تاریخ قمری */
+            border: 2px solid #3498db; /* رنگ کادر تاریخ قمری */
+        }
     </style>
 </head>
 <body>
@@ -110,53 +131,61 @@
                 <li><a href="https://mahmoudkhawari.github.io/ABJAD/" target="_blank" style="color: white; text-decoration: none;">صفحه محاسبه ابجد</a></li>
                 <li><a href="https://mahmoudkhawari.github.io/ABJAD/12MAH" target="_blank" style="color: white; text-decoration: none;">طالعنامه</a></li>
                 <li><a href="https://mahmoudkhawari.github.io/ABJAD/12MAH" target="_blank" style="color: white; text-decoration: none;">علت بیماری</a></li>
-					    <li><a href="https://mahmoudkhawari.github.io/ABJAD/JINN" target="_blank" style="color: white; text-decoration: none;"> دفع جن</a></li>
-	    <li><a href="https://mahmoudkhawari.github.io/ABJAD/ROQAYYA" target="_blank" style="color: white; text-decoration: none;"> رقیه شرعیه</a></li>
-	    <li><a href="https://mahmoudkhawari.github.io/ABJAD/SEHR" target="_blank" style="color: white; text-decoration: none;">دفع سحر</a></li>
-			    <li><a href="https://mahmoudkhawari.github.io/ABJAD/REZQ" target="_blank" style="color: white; text-decoration: none;"> جلب رزق</a></li>
-	    <li><a href="https://mahmoudkhawari.github.io/ABJAD/AWLAD" target="_blank" style="color: white; text-decoration: none;">طلب فرزند</a></li>
+                <li><a href="https://mahmoudkhawari.github.io/ABJAD/JINN" target="_blank" style="color: white; text-decoration: none;"> دفع جن</a></li>
+                <li><a href="https://mahmoudkhawari.github.io/ABJAD/ROQAYYA" target="_blank" style="color: white; text-decoration: none;"> رقیه شرعیه</a></li>
+                <li><a href="https://mahmoudkhawari.github.io/ABJAD/SEHR" target="_blank" style="color: white; text-decoration: none;">دفع سحر</a></li>
+                <li><a href="https://mahmoudkhawari.github.io/ABJAD/REZQ" target="_blank" style="color: white; text-decoration: none;"> جلب رزق</a></li>
+                <li><a href="https://mahmoudkhawari.github.io/ABJAD/AWLAD" target="_blank" style="color: white; text-decoration: none;">طلب فرزند</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
 	        <div class="line-before-title"></div> <!-- خط قبل از عنوان -->
-<div class="persian-text">
-دوستان روز های ممزوج یعنی روزی که سعد و نحس با هم است <br>
-روز ممزوج گاهی بدترین نحس است<br>
-باید با احتیاط به انجام امور خود بپردازید و بهتر<br>
-است موقع بیرون شدن صدقه بدهید و ایت الکرسی و ناس و فلق 
-را بخوانید و دعایی که در انتهای صفحه قرار داده شده 
-<br>
-در اخر صفحه دعایی که برای زمانی که شما در روز نحس اظطرار دارید و باید کاری را انجام دهید <br>
-</div>
+
+	        <div class="arabic-text">
+            <span style="color: blue;"> 
+            سعد و نحس روز ها به حساب ماه قمری
+            </span>
+        </div>
         <div class="line-before-title"></div> <!-- خط قبل از عنوان -->
-        <div class="arabic-text">
-		<span style="color: blue;"> 
-		سعد و نحس روز ها به حساب ماه قمری
-		</span>
-		</div>
-		
-		        <div class="line-before-title"></div> <!-- خط قبل از عنوان -->
+
+        <h1>تاریخ امروز</h1>
+        <div class="date solar-date" id="solarDate"></div> <!-- تاریخ شمسی -->
+        <div class="date lunar-date" id="lunarDate"></div> <!-- تاریخ قمری -->
+        <div class="line-before-title"></div> <!-- خط قبل از عنوان -->
+
+        <div class="persian-text">
+            دوستان روز های ممزوج یعنی روزی که سعد و نحس با هم است <br>
+            روز ممزوج گاهی بدترین نحس است<br>
+            باید با احتیاط به انجام امور خود بپردازید و بهتر<br>
+            است موقع بیرون شدن صدقه بدهید و ایت الکرسی و ناس و فلق 
+            را بخوانید و دعایی که در انتهای صفحه قرار داده شده 
+            <br>
+            در اخر صفحه دعایی که برای زمانی که شما در روز نحس اظطرار دارید و باید کاری را انجام دهید <br>
+        </div>
+
+        
+        <div class="line-before-title"></div> <!-- خط قبل از عنوان -->
 
         <div class="arabic-text">
-		 مكارم الاخلاق
-		 الفصل السادس : في اختيارات الايام
-		 <br>
+            مكارم الاخلاق
+            الفصل السادس : في اختيارات الايام
+            <br>
             عن الصادق عليه‌السلام 
         </div>
         <div class="persian-text">
-		در کتاب مکارم الاخلاق در باب اختیارات ایام
+            در کتاب مکارم الاخلاق در باب اختیارات ایام
             از امام صادق (علیه‌السلام) روایت شده است
         </div>
-                <div class="line-before-title"></div> <!-- خط قبل از عنوان -->
+        <div class="line-before-title"></div> <!-- خط قبل از عنوان -->
         <div class="arabic-text">
             أول يوم من الشهر سعد يصلح للقاء الامراء وطلب الحوائج والشراء والبيع والزراعة والسفر
         </div>
         <div class="persian-text">
             روز اول ماه سعد است و برای ملاقات با امرا، درخواست نیازها، خرید و فروش، کشاورزی و سفر مناسب است
         </div>
-                <div class="line-before-title"></div> <!-- خط قبل از عنوان -->
+        <div class="line-before-title"></div> <!-- خط قبل از عنوان -->
         <div class="arabic-text">
             الثاني منه يصلح للسفر وطلب الحوائج
         </div>
@@ -444,31 +473,28 @@
             و کسی که در آن به دنیا بیاید، انسان باحلم و مبارکی خواهد بود و مقامش بالا می‌رود و زبانش راستگو و وفادار خواهد بود
         </div>
         <div class="line-before-title"></div> <!-- خط قبل از عنوان -->
-		<div class="persian-text">این دعا در موقع مجبوری و اظطرار خوانده شود
-		
-		بجای کذا حاجت خود را برای رفع نحسی روز بیان کنید
-		</div>
-		<div class="arabic-text">
-		لا حول ولا قوة إلا بالله افرج بها كل كربة ،<br>
- لا حول ولا قوة إلا بالله أحل بها كل عقدة.<br>
- لا حول ولا قوة إلا بالله أجلو بها كل ظلمة.<br>
- لا حول ولا قوة إلا بالله أفتح بها كل باب.<br>
- لا حول ولا قوة إلا بالله أستعين بها على كل شدة ومصيبة.<br>
- لا حول ولا قوة إلا بالله أستعين بها على كل أمر ينزل بي.<br>
- لا حول ولا قوة إلا بالله أعتصم بها من كل محذور أحاذره.<br>
- لا حول ولا قوة إلا بالله أستوجب بها العفو والعافية والرضا من الله.<br>
- لا حول ولا قوة إلا بالله تفرق أعداء الله وغلبت حجة الله وبقي وجه الله.<br>
- لا حول ولا قوة إلا بالله ،<br>
- اللهم رب الارواح الفانية ورب الاجساد البالية ورب الشعور المتمعطة <br>
-ورب الجلود الممزقة ورب العظام النخرة ورب الساعة القائمة أسألك <br>
-يا رب أن تصلي على محمد وأهل بيته الطاهرين <br>
-وافعل بي 
-<span style="color: blue;">
-كذا
-</span>
- بخفي لطفك يا ذا الجلال والاكرام آمين آمين يا رب العالمين.<br>
-		</div>
-		
+        <div class="persian-text">این دعا در موقع مجبوری و اظطرار خوانده شود
+            <br>
+            بجای کذا حاجت خود را برای رفع نحسی روز بیان کنید
+        </div>
+        <div class="arabic-text">
+            لا حول ولا قوة إلا بالله افرج بها كل كربة ،<br>
+            لا حول ولا قوة إلا بالله أحل بها كل عقدة.<br>
+            لا حول ولا قوة إلا بالله أجلو بها كل ظلمة.<br>
+            لا حول ولا قوة إلا بالله أفتح بها كل باب.<br>
+            لا حول ولا قوة إلا بالله أستعين بها على كل شدة ومصيبة.<br>
+            لا حول ولا قوة إلا بالله أستعين بها على كل أمر ينزل بي.<br>
+            لا حول ولا قوة إلا بالله أعتصم بها من كل محذور أحاذره.<br>
+            لا حول ولا قوة إلا بالله أستوجب بها العفو والعافية والرضا من الله.<br>
+            لا حول ولا قوة إلا بالله تفرق أعداء الله وغلبت حجة الله وبقي وجه الله.<br>
+            لا حول ولا قوة إلا بالله ،<br>
+            اللهم رب الارواح الفانية ورب الاجساد البالية ورب الشعور المتمعطة <br>
+            ورب الجلود الممزقة ورب العظام النخرة ورب الساعة القائمة أسألك <br>
+            يا رب أن تصلي على محمد وأهل بيته الطاهرين <br>
+            وافعل بي 
+            <span style="color: blue;">كذا</span>
+            بخفي لطفك يا ذا الجلال والاكرام آمين آمين يا رب العالمين.<br>
+        </div>
     </main>
 
     <footer>
@@ -480,6 +506,32 @@
         window.onload = function() {
             document.body.style.opacity = 1; // نمایش محتوا بعد از بارگذاری
         };
+
+        function convertToLunar(solarDate) {
+            const lunarMonths = [
+                'محرم', 'صفر', 'ربیع‌الاول', 'ربیع‌الثانی', 'جمادی‌الأولى', 'جمادی‌الثانی', 
+                'رجب', 'شعبان', 'رمضان', 'شوال', 'ذو القعدة', 'ذو الحجه'
+            ];
+            const weekdays = ['شنبه', 'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه'];
+
+            const lunarYear = solarDate.getFullYear() - 621; // تبدیل سال خورشیدی به قمری
+            const lunarMonth = lunarMonths[(solarDate.getMonth() + 1) % 12];
+            const lunarDay = solarDate.getDate();
+            const weekday = weekdays[solarDate.getDay()]; // روز هفته
+            
+            return `${lunarDay} ${lunarMonth} ${lunarYear} (${weekday})`;
+        }
+
+        function updateDates() {
+            const today = new Date();
+            const solarDate = today.toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' });
+            const lunarDate = convertToLunar(today);
+            
+            document.getElementById('solarDate').innerText = `تاریخ خورشیدی: ${solarDate}`;
+            document.getElementById('lunarDate').innerText = `تاریخ قمری: ${lunarDate}`;
+        }
+
+        updateDates();
     </script>
 </body>
 </html>
