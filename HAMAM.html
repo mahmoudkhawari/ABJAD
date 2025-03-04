@@ -1,1 +1,194 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آداب حمام کردن</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazir&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Vazir', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column; /* چیدمان عمودی */
+            min-height: 100vh; /* حداقل ارتفاع صفحه */
+            opacity: 0; /* مخفی کردن محتوا در ابتدا */
+            transition: opacity 1s; /* انیمیشن برای نمایش */
+        }
 
+        header {
+            background-color: #3498db; /* رنگ منوی شناور */
+            color: white; /* رنگ متن منوی شناور */
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            direction: rtl;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        main {
+            flex-grow: 1; /* اجازه می‌دهد که محتوا فضای باقی‌مانده را بگیرد */
+            padding-top: 80px; /* فاصله برای منوی ثابت */
+            display: flex;
+            flex-direction: column; /* چیدمان عمودی */
+            align-items: center; /* مرکز کردن افقی */
+            text-align: right; /* راست چین کردن متن */
+            padding: 20px; /* فاصله داخلی */
+        }
+
+        .line-before-title {
+            width: 100%; /* عرض خط */
+            height: 2px; /* ارتفاع خط */
+            background-color: #ccc; /* رنگ خط */
+            margin-bottom: 20px; /* فاصله زیر خط */
+            margin-top: 40px; /* فاصله بالای خط (افزایش فاصله از منو) */
+        }
+
+        .title {
+            font-size: 24px; /* اندازه بزرگ برای عنوان */
+            color: #ff5733; /* رنگ خاص برای عنوان */
+            font-weight: bold; /* درشت کردن متن */
+            margin: 20px 0; /* فاصله بالا و پایین */
+            padding: 0 15px; /* فاصله از راست و چپ */
+        }
+
+        .hadith {
+            color: #4a90e2; /* رنگ دیگر برای متن اول */
+            margin-bottom: 20px; /* فاصله زیر متن */
+            padding: 0 15px; /* فاصله از راست و چپ */
+        }
+
+        .persian-text {
+            color: #007bff; /* رنگ برای متن فارسی */
+            margin-bottom: 20px; /* فاصله زیر متن */
+            padding: 0 15px; /* فاصله از راست و چپ */
+        }
+
+        .arabic-text {
+            color: #28a745; /* رنگ دیگر برای متن عربی */
+            margin-bottom: 20px; /* فاصله زیر متن */
+            padding: 0 15px; /* فاصله از راست و چپ */
+        }
+
+        .reference {
+            color: #333; /* رنگ معمولی برای مرجع */
+            font-style: italic; /* ایتالیک برای مرجع */
+            margin-bottom: 20px; /* فاصله زیر مرجع */
+            padding: 0 15px; /* فاصله از راست و چپ */
+        }
+
+        .line {
+            width: 100%; /* عرض خط */
+            height: 2px; /* ارتفاع خط */
+            background-color: #ccc; /* رنگ خط */
+            margin-top: 20px; /* فاصله بالای خط */
+        }
+
+        footer {
+            background-color: #3498db; 
+            color: white; 
+            text-align: center; 
+            padding: 10px 0; 
+            width: 100%;
+            position: relative;
+            bottom: 0;
+        }
+
+        /* استایل برای ریسپانسیو */
+        @media (max-width: 600px) {
+            .title {
+                font-size: 20px; /* اندازه کوچک‌تر برای عنوان در صفحه‌های کوچک */
+            }
+            .hadith, .arabic-text, .reference, .persian-text {
+                font-size: 14px; /* اندازه کوچک‌تر برای متن‌ها */
+            }
+        }
+
+        /* انیمیشن لود */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* بالاتر از سایر محتوا */
+        }
+
+        .loader div {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #3498db;
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite; /* انیمیشن چرخش */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader">
+        <div></div> <!-- انیمیشن بارگذاری -->
+    </div>
+    
+    <header>
+        <nav>
+            <ul>
+                <li><a href="https://mahmoudkhawari.github.io/ABJAD/" target="_blank" style="color: white; text-decoration: none;">صفحه محاسبه ابجد</a></li>
+                <li><a href="https://mahmoudkhawari.github.io/ABJAD/12MAH" target="_blank" style="color: white; text-decoration: none;">طالعنامه</a></li>
+                <li><a href="https://mahmoudkhawari.github.io/ABJAD/ELLAT" target="_blank" style="color: white; text-decoration: none;">علت بیماری</a></li>
+                <li><a href="https://mahmoudkhawari.github.io/ABJAD/JINN" target="_blank" style="color: white; text-decoration: none;">دفع جن</a></li>
+                <li><a href="https://mahmoudkhawari.github.io/ABJAD/ROQAYYA" target="_blank" style="color: white; text-decoration: none;">رقیه شرعیه</a></li>
+                <li><a href="https://mahmoudkhawari.github.io/ABJAD/SEHR" target="_blank" style="color: white; text-decoration: none;">دفع سحر</a></li>
+                <li><a href="https://mahmoudkhawari.github.io/ABJAD/AWLAD" target="_blank" style="color: white; text-decoration: none;">طلب فرزند</a></li>
+                <li><a href="https://mahmoudkhawari.github.io/ABJAD/SAADNAHS" target="_blank" style="color: white; text-decoration: none;">ایام سعد و نحش</a></li>	    
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="line-before-title"></div>
+        <div class="title">آداب حمام کردن</div> <!-- تغییر عنوان در بدنه صفحه -->
+        
+        <div class="persian-text">متن فارسی اینجا قرار می‌گیرد.</div>
+        
+        <div class="arabic-text">النص العربي الخاص بك هنا.</div>
+        
+        <div class="line"></div> <!-- خط زیر متن‌ها -->
+    </main>
+
+    <footer>
+        <p style="margin: 0;">&copy; 2025 طراحی توسط محمود خاوری. تمامی حقوق محفوظ است.</p>
+    </footer>
+
+    <script>
+        // انیمیشن بارگذاری
+        window.onload = function() {
+            document.body.style.opacity = 1; // نمایش محتوا بعد از بارگذاری
+            document.querySelector('.loader').style.display = 'none'; // مخفی کردن انیمیشن بارگذاری
+        };
+    </script>
+</body>
+</html>
